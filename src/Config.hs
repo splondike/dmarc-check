@@ -5,6 +5,7 @@ module Config (
 
 import Data.Conf
 import Control.Exception(try, SomeException)
+import Control.Applicative((<*>), pure)
 
 data Config = Config {
    ipsToValidate :: [String],
@@ -23,16 +24,12 @@ getSettings = do
 
 type ReadConfType = IO (Either SomeException [(String, String)])
 
-buildConfig conf = do
-   ipsToValidateVal <- getConf "ipsToValidate" conf
-   mailServerVal <- getConf "mailServer" conf
-   usernameVal <- getConf "username" conf
-   passwordVal <- getConf "password" conf
-   reportRecipientVal <- getConf "reportRecipient" conf
-   return Config {
-      ipsToValidate = ipsToValidateVal,
-      mailServer = mailServerVal,
-      username = usernameVal,
-      password = passwordVal,
-      reportRecipient = reportRecipientVal
-   }
+buildConfig conf =
+   pure Config
+   <+> "ipsToValidate"
+   <+> "mailServer"
+   <+> "username"
+   <+> "password"
+   <+> "reportRecipient"
+   where
+      g <+> a = g <*> getConf a conf
