@@ -1,3 +1,6 @@
+module DmarcCheck(
+   main
+) where
 import System.Exit (exitFailure)
 import Control.Monad (forM_)
 

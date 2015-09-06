@@ -11,7 +11,6 @@ import Text.XML.Light.Proc
 import EmailExtract(Email(..))
 import Config (Config(..))
 
-
 data Result = Pass | Fail | Error
    deriving (Show, Eq)
 
