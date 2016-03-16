@@ -6,6 +6,10 @@ The DMARC[1] specification describes how email receipients should treat messages
 
 ## Building
 
-You should just need the Haskell Platform installed (https://www.haskell.org/platform/). After that you should just be able to switch to the directory and run `cabal build`.
+You should just need Stackage installed (https://www.stackage.org/). After that you should just be able to switch to the directory and run `stack build`.
 
-To run it, use `cabal run`. You will need to fill in the configuration file `dmarc-check.conf` (using `example-dmarc-check.conf` as a template). The program assumes you have a dedicated mailbox assigned to dmarc aggregate reports.
+To run it, use `stack exec -- dmarc-check`. You will need to fill in the configuration file `dmarc-check.conf` (using `example-dmarc-check.conf` as a template). The program assumes you have a dedicated mailbox assigned to dmarc aggregate reports.
+
+## Automated tests
+
+The application has some automated tests. To run these use `stack test`.

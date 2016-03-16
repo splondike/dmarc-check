@@ -19,11 +19,12 @@ library
       CheckEmail,
       EmailExtract
    other-modules:
-      EmailHandler
+      EmailHandler,
+      Data.Conf.Parser
    default-language: Haskell2010
    build-depends:
-      base >=4.7 && <4.8,
-      HaskellNet-SSL == 0.3.0.0,
+      base >=4.7 && <4.9,
+      HaskellNet-SSL >= 0.3.2.1,
       HaskellNet >= 0.3,
       hsemail == 1.7.7,
       parsec >= 3.0,
@@ -33,7 +34,8 @@ library
       base64-bytestring >= 1.0.0.1,
       old-time >= 1.1.0.3,
       xml >= 1.3,
-      conf >= 0.1.1.0,
+      -- For Data.Conf
+      haskell-src,
       text >= 1.1.1.3
    
 executable dmarc-check
@@ -41,7 +43,7 @@ executable dmarc-check
    hs-source-dirs: src-cmdline
    default-language:    Haskell2010
    build-depends:
-      base >=4.7 && <4.8,
+      base >=4.7 && <4.9,
       dmarc-check
 
 Test-Suite checks
@@ -49,7 +51,7 @@ Test-Suite checks
    main-is: Tests.hs
    hs-source-dirs: src-test
    build-depends:      
-      base >=4.6 && <4.8,
+      base >=4.6 && <4.9,
       test-framework,
       test-framework-hunit,
       HUnit,

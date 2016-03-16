@@ -1,4 +1,4 @@
-dist/
+.stack-work/
 dmarc-check.conf
 
 *.swp
