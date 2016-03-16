@@ -1,7 +1,7 @@
 module DmarcCheck(
    main
 ) where
-import System.Exit (exitFailure)
+import System.Exit (exitWith, exitSuccess, ExitCode(ExitFailure))
 import Control.Monad (forM_)
 
 import Config
@@ -24,18 +24,15 @@ processReports conf = do
 
    let processingFailures = (length maybeReportEmails) - (length onlyParsed)
    let resultPairs = zip results onlyParsed
-   sendEmail conf resultPairs processingFailures
+   putStrLn $ resultStr resultPairs processingFailures
+   case all resultSuccess results of
+        True -> exitSuccess
+        False -> exitWithCheckFailed
    where
       maybeToList (Just a) = [a]
       maybeToList Nothing = []
-
-sendEmail :: Config -> [(Result, Email)] -> Int -> IO ()
-sendEmail conf resultPairs parseFailuresCount = sendMessage conf to subj msg
-   where
-      to = reportRecipient conf
-      msg = resultStr resultPairs parseFailuresCount
-      passed = all ((==Pass) . fst) resultPairs
-      subj = if passed then "Dmarc: passed" else "Dmarc: failed"
+      resultSuccess Pass = True
+      resultSuccess _ = False
 
 resultStr resultPairs failuresCount = concat msg
    where
@@ -50,4 +47,7 @@ resultStr resultPairs failuresCount = concat msg
       extractFailedEmail (Pass, _) = []
       extractFailedEmail (_, email) = [email]
 
-usage = putStrLn "Check you have a dmarc-check.conf file fully filled out in the current working directory." >> exitFailure
+usage = putStrLn "Check you have a dmarc-check.conf file fully filled out in the current working directory." >> exitWithUserError
+
+exitWithUserError = exitWith $ ExitFailure 1
+exitWithCheckFailed = exitWith $ ExitFailure 2

@@ -11,8 +11,7 @@ data Config = Config {
    ipsToValidate :: [String],
    mailServer :: String,
    username :: String,
-   password :: String,
-   reportRecipient :: String
+   password :: String
 } deriving Show
 
 getSettings :: IO (Maybe Config)
@@ -30,6 +29,5 @@ buildConfig conf =
    <+> "mailServer"
    <+> "username"
    <+> "password"
-   <+> "reportRecipient"
    where
       g <+> a = g <*> getConf a conf

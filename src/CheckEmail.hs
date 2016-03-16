@@ -11,14 +11,14 @@ import Text.XML.Light.Proc
 import EmailExtract(Email(..))
 import Config (Config(..))
 
-data Result = Pass | Fail | Error
+data Result = Pass | Fail | ParseError
    deriving (Show, Eq)
 
 emailToResult :: Config -> Email -> Result
 emailToResult conf email = toResult $ extractDOM >>= return . (getResult conf)
    where
       extractDOM = (xmlStr email) >>= parseXMLDoc
-      toResult Nothing = Error
+      toResult Nothing = ParseError
       toResult (Just r) = r
 
 -- TODO: Check this works as expected with some constructed documents
