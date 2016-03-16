@@ -10,6 +10,9 @@ import Control.Applicative((<*>), pure)
 data Config = Config {
    ipsToValidate :: [String],
    mailServer :: String,
+   useSsl :: Bool,
+   ignoreCertFailure :: Maybe Bool,
+   port :: Maybe Integer,
    username :: String,
    password :: String
 } deriving Show
@@ -26,8 +29,12 @@ type ReadConfType = IO (Either SomeException [(String, String)])
 buildConfig conf =
    pure Config
    <+> "ipsToValidate"
-   <+> "mailServer"
-   <+> "username"
-   <+> "password"
+   <+> "imapServer"
+   <+> "imapUseSsl"
+   <?> "imapIgnoreCertFailure"
+   <?> "imapPort"
+   <+> "imapUsername"
+   <+> "imapPassword"
    where
       g <+> a = g <*> getConf a conf
+      g <?> a = g >>= \c -> return $ c (getConf a conf)

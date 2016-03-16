@@ -9,30 +9,21 @@ import Data.ByteString.Internal(ByteString)
 import Network.HaskellNet.IMAP
 import Network.HaskellNet.IMAP.Types
 import Network.HaskellNet.IMAP.Connection
-import Network.HaskellNet.IMAP.SSL (Settings(..), Flag(Seen), FlagsQuery(..), connectIMAPSSLWithSettings)
+import qualified Network.HaskellNet.IMAP as IPlain
+import qualified Network.HaskellNet.IMAP.SSL as ISSL
 
 import qualified Data.Text.Lazy as Text (pack)
-import qualified Network.HaskellNet.SMTP as SMTP (authenticate, sendPlainTextMail,  closeSMTP, SMTPConnection, AuthType(..))
-import qualified Network.HaskellNet.SMTP.SSL as SMTPSSL (connectSMTPSSLWithSettings, Settings(..))
 
 import Config
-
-imapSettings = Settings {
-   sslPort = 993,
-   sslMaxLineLength = 1000000,
-   sslLogToConsole = False,
-   sslDisableCertificateValidation = True
-}
 
 data ReceiveConnection = ReceiveConnection IMAPConnection
 data MessageID = MessageID UID
 
 getReceiveConnection :: Config -> IO ReceiveConnection
 getReceiveConnection conf = do
-   let mailServerVal = mailServer conf
    let usernameVal = username conf
    let passwordVal = password conf
-   connection <- connectIMAPSSLWithSettings mailServerVal imapSettings
+   connection <- connectToImap conf
    login connection usernameVal passwordVal
    select connection "INBOX"
    return (ReceiveConnection connection)
@@ -44,3 +35,24 @@ getLatestReports receiveConnection = do
    let getPairs id = fetch connection id >>= (\c -> return (MessageID id, c))
    idsWithContent <- mapM getPairs msgs
    return idsWithContent
+
+connectToImap conf = case useSsl conf of
+                        True -> sslConnection
+                        False -> plainConnection
+   where
+      sslConnection = ISSL.connectIMAPSSLWithSettings mailServerVal sslSettings
+      plainConnection = IPlain.connectIMAPPort mailServerVal serverPort
+      mailServerVal = mailServer conf
+      sslSettings = ISSL.Settings {
+         ISSL.sslPort = serverPort,
+         ISSL.sslMaxLineLength = 1000000,
+         ISSL.sslLogToConsole = False,
+         ISSL.sslDisableCertificateValidation = disableCert
+      }
+      serverPort = fromInteger $ guessPort (useSsl conf) (port conf)
+      guessPort _ (Just portOverride) = portOverride
+      guessPort True _ = 993
+      guessPort False _ = 143
+      disableCert = handleMaybe $ ignoreCertFailure conf
+      handleMaybe (Just b) = b
+      handleMaybe Nothing = False
