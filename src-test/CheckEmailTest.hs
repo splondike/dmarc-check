@@ -20,11 +20,11 @@ allTests = testGroup "CheckEmail Tests" [
    testCase "Bad spf email" testBadSpfFails,
    testCase "Bad dkim email" testBadDkimFails]
 
-testNoXmlErrors = assertEqual "Parse result is Error" Error actual
+testNoXmlErrors = assertEqual "Parse result is Error" ParseError actual
    where
       actual = emailToResult conf (makeEmail Nothing)
 
-testInvalidXmlErrors = assertEqual "Parse result is Error" Error actual
+testInvalidXmlErrors = assertEqual "Parse result is Error" ParseError actual
    where
       actual = emailToResult conf (makeEmail (Just "bad xml"))
 
@@ -94,5 +94,5 @@ makeXml ip spf dkim = "\
      \</record>\
    \</feedback>"
 
-conf = Config ["111.111.111.111"] "" "" "" ""
+conf = Config ["111.111.111.111"] "" True Nothing Nothing "" ""
 theTime = toUTCTime $ TOD 0 0
