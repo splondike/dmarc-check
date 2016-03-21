@@ -17,9 +17,9 @@ data Config = Config {
    password :: String
 } deriving Show
 
-getSettings :: IO (Maybe Config)
-getSettings = do
-   result <- try $ readConf "dmarc-check.conf" :: ReadConfType
+getSettings :: FilePath -> IO (Maybe Config)
+getSettings configPath = do
+   result <- try $ readConf configPath :: ReadConfType
    case result of
         Left _ -> return Nothing
         Right conf -> return $ buildConfig conf

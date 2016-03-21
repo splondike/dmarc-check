@@ -1,53 +1,57 @@
 module DmarcCheck(
-   main
+   program
 ) where
-import System.Exit (exitWith, exitSuccess, ExitCode(ExitFailure))
+
+import System.Exit (exitFailure, exitSuccess)
 import Control.Monad (forM_)
+import Data.Maybe (catMaybes)
+
+import Data.Text (unpack)
+import Data.Text.Encoding (decodeUtf8')
+import Data.ByteString.Lazy (toStrict)
+import qualified Data.Csv as CSV
 
 import Config
 import EmailHandler
 import EmailExtract
-import CheckEmail
+import qualified Data.DMARCAggregateReport as DM
+import qualified CSVReport as CSV
 
-main = do
-   maybeConf <- getSettings
+program configPath includeHeader = do
+   maybeConf <- getSettings configPath
    case maybeConf of
-        Just conf -> processReports conf
-        Nothing -> usage
+        Just conf -> processReports includeHeader conf
+        Nothing -> usage configPath
 
-processReports conf = do
-   receiveConn <- getReceiveConnection conf
-   reportEmailStrs <- getLatestReports receiveConn
-   let maybeReportEmails = map (extractEmail . snd) reportEmailStrs
-   let onlyParsed = concatMap maybeToList maybeReportEmails
-   let results = map (emailToResult conf) onlyParsed
+processReports includeHeader conf = do
+   conn <- getReceiveConnection conf
+   reportEmails <- getLatestReports conn
+   csvRecords <- makeCsvRecords reportEmails
+   putStrLn $ convertToCsv includeHeader csvRecords
+   exitSuccess
+   forM_ reportEmails $ \(id, _) ->
+      markAsRead conn id
 
-   let processingFailures = (length maybeReportEmails) - (length onlyParsed)
-   let resultPairs = zip results onlyParsed
-   putStrLn $ resultStr resultPairs processingFailures
-   case all resultSuccess results of
-        True -> exitSuccess
-        False -> exitWithCheckFailed
+convertToCsv _ [] = ""
+convertToCsv includeHeader csvRecords@(x:xs) = case decodeUtf8' bsResult of
+                                      Right val -> unpack val
+                                      Left _ -> ""
    where
-      maybeToList (Just a) = [a]
-      maybeToList Nothing = []
-      resultSuccess Pass = True
-      resultSuccess _ = False
+      bsResult = toStrict $ CSV.encodeByNameWith encodeOptions header csvRecords
+      header = CSV.headerOrder x
+      encodeOptions = CSV.defaultEncodeOptions {
+         CSV.encIncludeHeader = includeHeader
+      }
 
-resultStr resultPairs failuresCount = concat msg
+makeCsvRecords emails = CSV.buildReports $ makeReports emails
+
+makeReports emails = reports
    where
-      msg = ["Received ", totalEmails, " emails.", parseFailuresStr, "\n\n", failedChecksStr]
-      totalEmails = show $ failuresCount + (length resultPairs)
-      parseFailuresStr = if failuresCount > 0 then parseFailuresStr' else ""
-      parseFailuresStr' = " Failed to parse " ++ (show failuresCount) ++ " emails."
-      failedChecksStr = if length failedEmails > 0 then "Failed emails:\n" ++ failedEmailsStr else ""
-      failedEmailsStr = concatMap emailToStr failedEmails
-      emailToStr e = concat [subject e, " (", show $ dateReceived e, ")\n"]
-      failedEmails = concatMap extractFailedEmail resultPairs
-      extractFailedEmail (Pass, _) = []
-      extractFailedEmail (_, email) = [email]
-
-usage = putStrLn "Check you have a dmarc-check.conf file fully filled out in the current working directory." >> exitWithUserError
-
-exitWithUserError = exitWith $ ExitFailure 1
-exitWithCheckFailed = exitWith $ ExitFailure 2
+      reports = catMaybes $ map extractReport emails
+      extractReport (id, content) = extractEmail content >>=
+                                    xmlStr >>=
+                                    eitherToMaybe . DM.parseReport
+      eitherToMaybe (Left _) = Nothing
+      eitherToMaybe (Right x) = Just x
+      
+usage configPath = putStrLn ("Couldn't find / parse config file at " ++ configPath) >> exitFailure

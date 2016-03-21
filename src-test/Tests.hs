@@ -1,9 +1,9 @@
 import Test.Framework (defaultMain, defaultMainWithOpts, testGroup)
 
-import qualified CheckEmailTest as CheckEmailTest (allTests) 
+import qualified DMARCAggregateReportTest as DMARCAggregateReportTest (allTests) 
 
 tests = [
-   CheckEmailTest.allTests
+   DMARCAggregateReportTest.allTests
    ]
 
 main = defaultMain tests
