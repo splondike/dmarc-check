@@ -31,7 +31,7 @@ processReports includeHeader markProcessedAsRead conf = do
    reportEmails <- try "download latest emails" $ getLatestReports conn
    csvRecords <- try "build CSV records" $ makeCsvRecords reportEmails
 
-   putStrLn $ convertToCsv includeHeader csvRecords
+   putStr $ convertToCsv includeHeader csvRecords
 
    when markProcessedAsRead $ try "mark emails as read" $
         forM_ reportEmails $ \(id, _) ->
