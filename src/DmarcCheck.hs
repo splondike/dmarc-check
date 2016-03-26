@@ -1,10 +1,13 @@
+{-# LANGUAGE ScopedTypeVariables #-}
 module DmarcCheck(
    program
 ) where
 
+import System.IO (hPutStrLn, stderr)
 import System.Exit (exitFailure, exitSuccess)
-import Control.Monad (forM_)
+import Control.Monad (forM_, when)
 import Data.Maybe (catMaybes)
+import qualified Control.Exception as Ex
 
 import Data.Text (unpack)
 import Data.Text.Encoding (decodeUtf8')
@@ -24,14 +27,24 @@ program configPath includeCsvHeader markProcessedAsRead = do
         Left msg -> usage msg
 
 processReports includeHeader markProcessedAsRead conf = do
-   conn <- getReceiveConnection conf
-   reportEmails <- getLatestReports conn
-   csvRecords <- makeCsvRecords reportEmails
+   conn <- try "connect to IMAP server" $ getReceiveConnection conf
+   reportEmails <- try "download latest emails" $ getLatestReports conn
+   csvRecords <- try "build CSV records" $ makeCsvRecords reportEmails
+
    putStrLn $ convertToCsv includeHeader csvRecords
-   case markProcessedAsRead of
-        True -> forM_ reportEmails $ \(id, _) ->
-                  markAsRead conn id
-        False -> return ()
+
+   when markProcessedAsRead $ try "mark emails as read" $
+        forM_ reportEmails $ \(id, _) ->
+            markAsRead conn id
+   where
+      try :: forall a. String -> IO a -> IO a
+      try errMsg action = do
+         result <- Ex.try $ action :: IO (Either Ex.SomeException a)
+         case result of
+              Right val -> return val
+              Left ex -> do
+                 hPutStrLn stderr $ "Failed to " ++ errMsg ++ ":\n  " ++ (show ex)
+                 exitFailure
 
 convertToCsv _ [] = ""
 convertToCsv includeHeader csvRecords@(x:xs) = case decodeUtf8' bsResult of
