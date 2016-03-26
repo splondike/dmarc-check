@@ -1,6 +1,7 @@
 module EmailHandler (
    getReceiveConnection,
    getLatestReports,
+   markAsRead,
    ReceiveConnection,
    MessageID
 ) where
@@ -32,9 +33,18 @@ getLatestReports :: ReceiveConnection -> IO [(MessageID, ByteString)]
 getLatestReports receiveConnection = do
    let (ReceiveConnection connection) = receiveConnection
    msgs <- search connection [UNFLAG Seen]
-   let getPairs id = fetch connection id >>= (\c -> return (MessageID id, c))
+   let getPairs id = fetch connection id >>= \content ->
+                     -- Some servers mark messages as seen after fetch
+                     -- we want to ensure we've processed them first
+                     store connection id (MinusFlags [Seen]) >>
+                     return (MessageID id, content)
    idsWithContent <- mapM getPairs msgs
    return idsWithContent
+
+markAsRead :: ReceiveConnection -> MessageID -> IO ()
+markAsRead receiveConnection (MessageID id) = do
+   let (ReceiveConnection connection) = receiveConnection
+   store connection id (PlusFlags [Seen])
 
 connectToImap conf = case useSsl conf of
                         True -> sslConnection
