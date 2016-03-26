@@ -17,19 +17,21 @@ import EmailExtract
 import qualified Data.DMARCAggregateReport as DM
 import qualified CSVReport as CSV
 
-program configPath includeHeader = do
+program configPath includeCsvHeader markProcessedAsRead = do
    maybeConf <- getSettings configPath
    case maybeConf of
-        Right conf -> processReports includeHeader conf
+        Right conf -> processReports includeCsvHeader markProcessedAsRead conf
         Left msg -> usage msg
 
-processReports includeHeader conf = do
+processReports includeHeader markProcessedAsRead conf = do
    conn <- getReceiveConnection conf
    reportEmails <- getLatestReports conn
    csvRecords <- makeCsvRecords reportEmails
    putStrLn $ convertToCsv includeHeader csvRecords
-   forM_ reportEmails $ \(id, _) ->
-      markAsRead conn id
+   case markProcessedAsRead of
+        True -> forM_ reportEmails $ \(id, _) ->
+                  markAsRead conn id
+        False -> return ()
 
 convertToCsv _ [] = ""
 convertToCsv includeHeader csvRecords@(x:xs) = case decodeUtf8' bsResult of
