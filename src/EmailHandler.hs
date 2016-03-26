@@ -6,14 +6,15 @@ module EmailHandler (
    MessageID
 ) where
 
+import Control.Exception (try, SomeException)
 import Data.ByteString.Internal(ByteString)
+import qualified Data.Text.Lazy as Text (pack)
+
 import Network.HaskellNet.IMAP
 import Network.HaskellNet.IMAP.Types
 import Network.HaskellNet.IMAP.Connection
 import qualified Network.HaskellNet.IMAP as IPlain
 import qualified Network.HaskellNet.IMAP.SSL as ISSL
-
-import qualified Data.Text.Lazy as Text (pack)
 
 import Config
 
@@ -35,11 +36,11 @@ getLatestReports receiveConnection = do
    msgs <- search connection [UNFLAG Seen]
    let getPairs id = fetch connection id >>= \content ->
                      -- Some servers mark messages as seen after fetch
-                     -- we want to ensure we've processed them first
+                     -- we will mark them as read explicitly after
+                     -- processing
                      store connection id (MinusFlags [Seen]) >>
                      return (MessageID id, content)
-   idsWithContent <- mapM getPairs msgs
-   return idsWithContent
+   mapM getPairs msgs
 
 markAsRead :: ReceiveConnection -> MessageID -> IO ()
 markAsRead receiveConnection (MessageID id) = do
