@@ -1,0 +1,78 @@
+Received: from mail6.bemta12.messagelabs.com (216.82.250.247) by
+ HNOEXCH01.hsa.local (192.168.0.8) with Microsoft SMTP Server (TLS) id
+ 14.3.210.2; Thu, 31 Mar 2016 20:47:26 +1100
+Return-Path: <noreply-dmarc-support@google.com>
+Received: from [216.82.249.211] by server-4.bemta-12.messagelabs.com id
+ FC/44-08444-C22FCF65; Thu, 31 Mar 2016 09:47:24 +0000
+X-Env-Sender: noreply-dmarc-support@google.com
+X-Msg-Ref: server-2.tower-53.messagelabs.com!1459417643!56493914!1
+X-Originating-IP: [209.85.213.201]
+X-SpamReason: No, hits=0.9 required=7.0 tests=SUBJ_HAS_UNIQ_ID
+X-StarScan-Received:
+X-StarScan-Version: 8.11; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 30953 invoked from network); 31 Mar 2016 09:47:24 -0000
+Received: from mail-ig0-f201.google.com (HELO mail-ig0-f201.google.com)
+ (209.85.213.201)  by server-2.tower-53.messagelabs.com with AES128-GCM-SHA256
+ encrypted SMTP; 31 Mar 2016 09:47:24 -0000
+Received: by mail-ig0-f201.google.com with SMTP id zh17so8643649igc.0
+        for <hapidmarc@headspace.org.au>; Thu, 31 Mar 2016 02:47:24 -0700
+ (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20120113;
+        h=mime-version:message-id:date:subject:from:to:content-disposition
+         :content-transfer-encoding;
+        bh=jTs2wZ4IGQay0jPJ5ckDXhhIvnNdDJ0YlbP7cETROnM=;
+        b=B1EhHiqyOB2iArg4PS1ouwPb3rtv9Sx3x74pxMFCMt4pxVozrTKwXcoJ6yYH9df/sh
+         oFNaEhtT5zVlGNfzNV31csANQUKFKjMjR10OcAyldsQYTayc5BTP+UXfZKlT88qsFMC0
+         QhLff0j5huIo/lgYTOl/oOV6nFOec7e9uu4d2eWV6kvQGIovrOeiFkX5dJ4yEHdwhjne
+         g42sR6dtrp+Le9EySUhYCTSaxG070I3CQenFgiLqzDY4srCk0i1nyV47/nCbACbnuS8F
+         +CpJCFQNSv0EcPC4wau+31ZhBV/tLa3UI1vhCiBCITvFi1Ez+BZ+b1AXFO3UN7FZvzFC
+         q3Rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20130820;
+        h=x-gm-message-state:mime-version:message-id:date:subject:from:to
+         :content-disposition:content-transfer-encoding;
+        bh=jTs2wZ4IGQay0jPJ5ckDXhhIvnNdDJ0YlbP7cETROnM=;
+        b=N4Sryr9vYHfJMYx/KK5alALZ7oEqkMl8UNRNDdUtNEUCNsf9HG4+ZieBQQA7jMqDLp
+         ifI/4e65FoAS/K7LdyKqFOmRLcFb5zzkkp/7Ji+RuXVd0O4Xpa7FfMcrSYZ0ij7a+Va/
+         4CqL4CprhidSmVqo9sQ+ZXOXtqogxZy5oXZywGjKIVtL8nbvqjlS/idt1DcowPeRUqC3
+         qVg6fMduodK+K8VfP8nQj8+VMQAr1IPIK6qagd2A96SHW6RBkrJX1W5NjRZjE52iXwMt
+         /3aAXxijwNfb3WmyKd0RjLkNfUz6HYCS7cL1MHaeyTR9f4wiZdS6zJF0FU4hSou6JEWf
+         NTew==
+X-Gm-Message-State: AD7BkJJJfd0YGTikQNrDNjJAktCIt1CdsZce25jSdeC/8eNSmcciV6zJklM/eR1NrT8NChjWE6L6IQ==
+X-Received: by 10.107.28.7 with SMTP id c7mr2332364ioc.20.1459417643625; Thu,
+ 31 Mar 2016 02:47:23 -0700 (PDT)
+Message-ID: <17895144500190651606@google.com>
+Date: Thu, 31 Mar 2016 09:47:23 +0000
+Subject: Report domain: hapi.headspace.org.au Submitter: google.com Report-ID: 17895144500190651606
+From: <noreply-dmarc-support@google.com>
+To: <hapidmarc@headspace.org.au>
+Content-Type: application/zip;
+	name="google.com!hapi.headspace.org.au!1459296000!1459382399.zip"
+Content-Disposition: attachment;
+	filename="google.com!hapi.headspace.org.au!1459296000!1459382399.zip"
+Content-Transfer-Encoding: base64
+X-MS-Exchange-Organization-AuthSource: HNOEXCH01.hsa.local
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AVStamp-Mailbox: KasprLab;28447;0;0
+X-KSE-ServerInfo: HNOEXCH01.hsa.local, 9
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean
+X-KSE-Dlp-Interceptor-Info: license violation
+MIME-Version: 1.0
+
+UEsDBAoAAAAIACpMf0gKNpxMQQIAAOEJAAA6AAAAZ29vZ2xlLmNvbSFoYXBpLmhlYWRzcGFjZS5v
+cmcuYXUhMTQ1OTI5NjAwMCExNDU5MzgyMzk5LnhtbO1Wy26jMBTd9yui7GNjAgRGlM5qvmBmjRxj
+wCrYlm3S5u/HDubRZlJl08VIWeGce++5j3NtJX9577vNiSrNBH/eIhBsN5QTUTHePG///P61S7eb
+l+Iprymtjpi8Fk+bTa6oFMqUPTW4wgY7zKJCNSXHPS0aIZqOAiL6HM7g6EN7zLqCC8vQnXdVjxXZ
+6UE6up/rsNHPx7wbhUsiuMHElIzXomiNkfoHhD4ULKEQQ8z1G1UwjJIkTgPLdR0/Evs2WFWgQ5rF
+KIriIEBZkMQoCZIcLvbR3/ZKS4V547ux0JE2jBcoirMwS4LAZhuRyU55dbHu03CfZbYWPpHBj2xz
+tvVQcyk6Rs6lHI4d0y2dCxF2PLxosWSgpbjSEhMK7KgBHizxaB1dcfXK+kLlcDx4UMv6grnvCEkr
+Cqc5lP63ngA9IZKYArkO3eFS8b+qs0MlQk2FKvE2j0KLQRFaMlmgMAAoRiCMIhDukc0xmyZnIgZu
+in0Ox8ME+4z0hLvBjq+aDG4mTEuhmbF77CtfIys/N4babpd1mCfiW669YR7LqstPOa1eU285qyg3
+rGb2Fs1hThaqylqJ/pZOaxfPecWU48G0paJ66MxCvqpv2YZOENy1QhtwOY3ox23wW+/I/Iz8j7nZ
+ZSHg58zOeZL2HpWTGMQx2FuJ0RcSo4fE90vcCuPexfGJvCWsxFp/q7BhEAJ3cTOQHm4LGx8eyt6v
+LOakFaczuHwV4NRcPeVrjb//8iKQAZSk9p0OH5f3P5M4h8u/tb9QSwECCgAKAAAACAAqTH9ICjac
+TEECAADhCQAAOgAAAAAAAAAAAAAAAAAAAAAAZ29vZ2xlLmNvbSFoYXBpLmhlYWRzcGFjZS5vcmcu
+YXUhMTQ1OTI5NjAwMCExNDU5MzgyMzk5LnhtbFBLBQYAAAAAAQABAGgAAACZAgAAAAA=

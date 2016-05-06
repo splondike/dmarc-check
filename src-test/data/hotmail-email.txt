@@ -1,0 +1,66 @@
+Received: from mail6.bemta12.messagelabs.com (216.82.250.247) by
+ HNOEXCH01.hsa.local (192.168.0.8) with Microsoft SMTP Server (TLS) id
+ 14.3.210.2; Tue, 15 Mar 2016 10:17:05 +1100
+Return-Path: <dmarcrep@microsoft.com>
+Received: from [216.82.249.211] by server-15.bemta-12.messagelabs.com id
+ 48/81-02991-F6647E65; Mon, 14 Mar 2016 23:17:03 +0000
+X-Env-Sender: dmarcrep@microsoft.com
+X-Msg-Ref: server-7.tower-53.messagelabs.com!1457997421!49975686!1
+X-Originating-IP: [65.54.190.207]
+X-SpamReason: No, hits=0.9 required=7.0 tests=FORGED_HOTMAIL_RCVD,
+  SUBJECT_EXCESS_BASE64
+X-StarScan-Received:
+X-StarScan-Version: 8.11; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 37837 invoked from network); 14 Mar 2016 23:17:02 -0000
+Received: from bay004-omc4s5.hotmail.com (HELO BAY004-OMC4S5.hotmail.com)
+ (65.54.190.207)  by server-7.tower-53.messagelabs.com with AES256-SHA256
+ encrypted SMTP; 14 Mar 2016 23:17:02 -0000
+Received: from BAY0-DTS-DRS01 ([65.54.190.201]) by BAY004-OMC4S5.hotmail.com
+ with Microsoft SMTPSVC(7.5.7601.23008);	 Mon, 14 Mar 2016 16:17:01 -0700
+From: <dmarcrep@microsoft.com>
+To: <hapidmarc@headspace.org.au>
+Date: Mon, 14 Mar 2016 16:17:01 -0700
+Subject: =?utf-8?B?UmVwb3J0IERvbWFpbjogaGFwaS5oZWFkc3BhY2Uub3JnLmF1IFN1Ym1pdHRlcjogaG90bWFpbC5jb20gUmVwb3J0LUlEOiA8NmEwMzBhZDI1Y2FjNGIzY2EwZDM4MjQ4MmUyNjE1NTJAaG90bWFpbC5jb20+?=
+Content-Type: multipart/mixed;
+	boundary="--boundary_82164_3f84055e-10f6-4e13-ab02-1feaeff6825f"
+Message-ID: <BAY004-OMC4S5l2RkeS00001df8@BAY004-OMC4S5.hotmail.com>
+X-OriginalArrivalTime: 14 Mar 2016 23:17:01.0237 (UTC) FILETIME=[9D01BE50:01D17E47]
+X-MS-Exchange-Organization-AuthSource: HNOEXCH01.hsa.local
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AVStamp-Mailbox: KasprLab;28054;0;0
+X-KSE-ServerInfo: HNOEXCH01.hsa.local, 9
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean
+X-KSE-Dlp-Interceptor-Info: license violation
+MIME-Version: 1.0
+
+----boundary_82164_3f84055e-10f6-4e13-ab02-1feaeff6825f
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+
+----boundary_82164_3f84055e-10f6-4e13-ab02-1feaeff6825f
+Content-Type: application/zip;
+	name="hotmail.com!hapi.headspace.org.au!1457910000!1457996400.zip"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="hotmail.com!hapi.headspace.org.au!1457910000!1457996400.zip"
+
+UEsDBBQAAgAIACCCbkibk/Z23gEAALoLAAA7AF0AaG90bWFpbC5jb20haGFwaS5oZWFkc3BhY2Uu
+b3JnLmF1ITE0NTc5MTAwMDAhMTQ1Nzk5NjQwMC54bWxTREgAjAAAAAAIAIsiHMhjZGBpEWFgYFBg
+gAAdIGZkBDNZRdDYTAwJDCwgnoAEw39GeQZGJogcSK8iE3ZxBbC4CEQcapYQA6YYyHwAVVQNAAds
+RudWbEbnVmxG51btVtuO2yAQ/ZUo7wXf4jjSLLtSn/sNFoFxjNYGhHHa/bY+9JP6C8UmSRMllfq4
+kWzJZmbwGc7hINm/f/6C1x99tzqiG5TRL+uUJOsVamGk0oeX9eibL9X6lUGDKPdcvDNwaI3zdY+e
+S+45A+MOteY9sm9KODOYxq++GmcJ0MsMYM9Vx2TPnQj4t/78JhGmBxpnz52VZCVP8oTLbCO4KPa5
+4InMq6yoMszKdLPJ3lrjJ0yE/8VBYIS14/oQ1tzjQWmWFpvtLk3CBTRWALWM5V1ZTOUpB3oNpXci
+remU+KjtuO/U0OK0lAkMNGu5VaRFLgfLBZIgmfAxdIuzwOW76pkDGgPgg23mdBrBMm00ArUMhnMc
+ArDCs3SiNgXhebe4Q2HcNJrvAWpGJ7BWlmVJRgqS5TtSbUOnSx2EGbVn2wJojM568Mi7MQif9KjB
+mkH5cAxOTK4rMNNvwp6H+qxkEhDzWQq970hndkqi9qpR4YQxmDYKXd040/9r565fAXqD5qNva4fD
+2PkhEji7wLVozfGDzKMjGv2NCxFzknVKTryjmP8z83Gb2IHekqMXhx47VaZkR9KyImlRPnAqXYz6
+VEZV4c63i1FPYVSRLEY9h1H5YtRzGLV8oz6FUfTyG/4HUEsBAhcLFAACAAgAIIJuSJuT9nbeAQAA
+ugsAADsAEQAAAAAAAQAgALaBAAAAAGhvdG1haWwuY29tIWhhcGkuaGVhZHNwYWNlLm9yZy5hdSEx
+NDU3OTEwMDAwITE0NTc5OTY0MDAueG1sU0QEAIwAAABVVAUAB2xG51ZQSwUGAAAAAAEAAQB6AAAA
+lAIAAAAA
+
+----boundary_82164_3f84055e-10f6-4e13-ab02-1feaeff6825f--

@@ -77,13 +77,17 @@ extractMultipartZip contentType body = zipBody
                       [] -> Nothing
                       (x:xs) -> Just x
       isZipChunk (EParse.Message headers _) = let allHeaders = extractHeaders "Content-Type" headers
-                                       in any isZipMimetype allHeaders
+                                              in any isZipMimetype allHeaders
       boundaryChunks = case maybeBoundaryDelimiter of 
                             Just delimiter -> extractParts delimiter body
                             Nothing -> []
       maybeBoundaryDelimiter = lookup "boundary" $ parseMultiPartHeader contentType
 
-isZipMimetype mime = startswith "application/zip" mime || startswith "application/x-zip-compressed" mime
+isZipMimetype mime = startswith "application/zip" mime ||
+                     startswith "application/x-zip-compressed" mime
+
+isGzipMimetype mime = startswith "application/gzip" mime
+-- TODO: Support uncompressed xml also
 
 extractParts :: String -> String -> [EParse.Message]
 extractParts delimiter body = justSuccessful

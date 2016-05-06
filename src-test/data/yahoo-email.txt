@@ -1,0 +1,86 @@
+Received: from mail6.bemta12.messagelabs.com (216.82.250.247) by
+ HNOEXCH01.hsa.local (192.168.0.8) with Microsoft SMTP Server (TLS) id
+ 14.3.210.2; Thu, 5 May 2016 02:31:21 +1000
+Return-Path: <noreply@dmarc.yahoo.com>
+Received: from [216.82.249.211] by server-8.bemta-12.messagelabs.com id
+ 6B/0D-31046-8D32A275; Wed, 04 May 2016 16:31:20 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrDIsWRWlGSWpSXmKPExsWS1PXUXve6sla
+  4wcIN+hZz7jxjdmD0uNHcyB7AGMWamZeUX5HAmjFhQT9TwVPuihNdN1gbGNdxdzFycbAIdLFI
+  bHuymKmLkZNDSCBNYv/dNhYYe8nEd2xdjBxAdo7E+Xc6IGEJASWJWz3zmSFsFYk/8/aAtfIKC
+  EqcnPkErJVZQFHiwr0GKNtTYsWWw4wQ9eYSrYcWgMVZgHov/TgC1ssmICvRu2Y/G4gtIiAv8e
+  BDD1hcWCBRYmLvRqj5ehKrevazTmDkn4Vk3Swk62YhWTcL6GpmAWmJ5f84IMJCEl0LXjJhKpe
+  QOPjiBTOEnSrx6cR7uJop3Q/ZIewcibm3f7MtYORaxahRnFpUllqka2Sml1SUmZ5RkpuYmaNr
+  aGikl5taXJyYnpqTmFSsl5yfu4kRGCv1DAyMOxhXNXodYpTkYFIS5V31RTNciC8pP6UyI7E4I
+  76oNCe1+BCjDAeHkgTvTiWtcCHBotT01Iq0zBxg1MKkJTh4lER4T4CkeYsLEnOLM9MhUqcYFa
+  XEeTeAJARAEhmleXBtsERxiVFWSpiXkYGBQYinILUoN7MEVf4VozgHo5IwxBSezLwSuOmvgBY
+  zAS1+P1cTZHFJIkJKqoHR8bFo+4WMbY8a3iVsUU3/LNOccGOJLL/njui/LcXPl4mzbft2YNkP
+  gdW3ntiEXZxTw1LwaHFsc/KXTZqrtS5orc0WueiQeilmHdvvW5Ksm86E80Vadhjrn5x8rzSp8
+  7R82Pr25Lm/Uxh+Kd3svvHs44MLPE+39h0/fDwi2rNdOsLbsuJPiouVEktxRqKhFnNRcSIAWf
+  +81g8DAAA=
+X-Env-Sender: noreply@dmarc.yahoo.com
+X-Msg-Ref: server-9.tower-53.messagelabs.com!1462379478!20943319!1
+X-Originating-IP: [98.138.229.63]
+X-SpamReason: No, hits=0.6 required=7.0 tests=FORGED_YAHOO_RCVD
+X-StarScan-Received:
+X-StarScan-Version: 8.34; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 42798 invoked from network); 4 May 2016 16:31:19 -0000
+Received: from n5-vm3.bullet.mail.ne1.yahoo.com (HELO
+ n5-vm3.bullet.mail.ne1.yahoo.com) (98.138.229.63)  by
+ server-9.tower-53.messagelabs.com with AES128-GCM-SHA256 encrypted SMTP; 4
+ May 2016 16:31:19 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1462379478; bh=mkO6rHDHlgIopsBdSHcdFgnJ9gSdV+FtW1higJCdwjQ=; h=Date:From:To:Subject:From:Subject; b=HsUrF2AwaXAEkT/iqxJ7ZrlbOyJX2SPJM5b2XCWEn+bANQ34H4eEpSAiV2jgd16mZzVe8mvNRNBtAOde36pSjD2N2W61E8LYqsExtt3CGuzvwR7PNg9i0xHoV2bUkOXljKalKmb/UxuzhC20fNiK5qFOHq35i3TSngSvXAqayAM8tZ1VAWJimDJ1OXQw9502IIs8vjhoVWP3W1kZNXJmtpqhgYEWiwMc3uh7D5ExvnOWFXDsR6Kt53F3uZpjXFwEXfBTxxevyRr1m9g9Kdk8jAhU+MQnkGObZFGEWUJQO4OlELEuhn9G/xp69XVf4NB1zQE7Ww7VbsET8Jn60NShbg==
+Received: from [98.138.226.173] by n5.bullet.mail.ne1.yahoo.com with NNFMP; 04
+ May 2016 16:31:18 -0000
+Received: from [98.138.237.130] by t2.bullet.mail.ne1.yahoo.com with NNFMP; 04
+ May 2016 16:31:18 -0000
+Received: from [127.0.0.1] by launcher100.asd.mail.corp.ne1.yahoo.com with
+ NNFMP; 04 May 2016 16:31:18 -0000
+X-Yahoo-Newman-Property: asdreport
+X-Yahoo-Newman-Id: 1462326664.688232
+Content-Transfer-Encoding: binary
+Content-Type: multipart/mixed; boundary="_----------=_146237947813893121"
+X-Mailer: MIME::Lite 3.027 (F2.73; A2.04; B3.13; Q3.13)
+Date: Wed, 4 May 2016 09:31:18 -0700
+From: <noreply@dmarc.yahoo.com>
+To: <hapidmarc@headspace.org.au>
+Subject: Report Domain: hapi.headspace.org.au Submitter: yahoo.com Report-ID: <1462326664.688232>
+Message-ID: <1462379478.62803@dmarc.yahoo.com>
+X-MS-Exchange-Organization-AuthSource: HNOEXCH01.hsa.local
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AVStamp-Mailbox: KasprLab;29268;0;0
+X-KSE-ServerInfo: HNOEXCH01.hsa.local, 9
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean
+X-KSE-Dlp-Interceptor-Info: license violation
+MIME-Version: 1.0
+
+--_----------=_146237947813893121
+Content-Disposition: inline
+Content-Length: 44
+Content-Transfer-Encoding: binary
+Content-Type: text/plain
+
+This is an aggregate report from Yahoo! Inc.
+--_----------=_146237947813893121
+Content-Disposition: attachment;
+	filename="yahoo.com!hapi.headspace.org.au!1462233600!1462319999.zip"
+Content-Transfer-Encoding: base64
+Content-Type: application/x-zip-compressed;
+	name="yahoo.com!hapi.headspace.org.au!1462233600!1462319999.zip"
+
+UEsDBBQAAAAIAOlLpEinHT0VugEAAFAEAAA5ABwAeWFob28uY29tIWhhcGkuaGVhZHNwYWNlLm9y
+Zy5hdSExNDYyMjMzNjAwITE0NjIzMTk5OTkueG1sVVQJAAPWIypX1iMqV3V4CwABBAAAAAAEAAAA
+AKVUwZKbMAw9t1+R7gfYCUlpdsb17rWf0BOjGBE8C7bHmGzz95XBMWzSnpYL4vlZ0nvSIF7+9N3m
+gn7Q1vx82rHt04v88lU0iPUJ1BvFm43w6KwPVY8BaggwgQRbf64M9Ch/Q2vtt80vo5jgGU0s7EF3
+0tkh9DAE9K91D16xa7zDlO0FnxmJnmrpWu4OZbEvyrI8sPJ4pFDw5TCxqR2sPJjzrRxhJzxrM90u
+9vtyuxV8RjIBTUq+e6ZnQw2YnJDfZcw1P4gXznZaXSs3njo9tLj0Y0mLkS04zVqEenCgkJElDEbK
+PZ8mLtRvupde8Dm4oYNrJjC+E+aksQYFdxlQQe6ishjMbf6zI3JTWZ+78/Z9cWGwo1dYaSeLbcEO
+rNg/s+MPwRc8U5UdTZDfBZ+DjKeaeIFuJNvqfBKd0APNXAfaq9T9GlkTo/iGNoAYiw9zi2TBfLKY
+sdJ6X5dmlQUKXaMJutG02svNOBL0VeNt/78ZrSm3tI+5BIyhrTwOYxdW+e8FpIGDUa29XNn09sxg
+eFyHtPwxoTQ4Bg9d3L3pe1H+oYBYu/KJatN0Hkqt9o8/qI38tFmCr34WfwFQSwECHgMUAAAACADp
+S6RIpx09FboBAABQBAAAOQAYAAAAAAABAAAApIEAAAAAeWFob28uY29tIWhhcGkuaGVhZHNwYWNl
+Lm9yZy5hdSExNDYyMjMzNjAwITE0NjIzMTk5OTkueG1sVVQFAAPWIypXdXgLAAEEAAAAAAQAAAAA
+UEsFBgAAAAABAAEAfwAAAC0CAAAAAA==
+
+--_----------=_146237947813893121--

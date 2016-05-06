@@ -1,0 +1,75 @@
+Received: from mail6.bemta8.messagelabs.com (216.82.243.55) by
+ HNOEXCH01.hsa.local (192.168.0.8) with Microsoft SMTP Server (TLS) id
+ 14.3.210.2; Wed, 4 May 2016 01:38:28 +1000
+Return-Path: <abuse_dmarc@abuse.aol.com>
+Received: from [216.82.241.243] by server-5.bemta-8.messagelabs.com id
+ DB/E3-24561-BE5C8275; Tue, 03 May 2016 15:38:19 +0000
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFupnkeJIrShJLcpLzFFi42I5I7vrs+6roxr
+  hBpteqlvMufOM2YHR40ZzI3sAYxRrZl5SfkUCa8bZq4tYCw5yVty4vYy1gXEOZxcjF4eQwF1G
+  ia9TFjFBOOcYJW7MW8rexcjBwSYgL/H1SkkXIyeHiICcxO53W9lAwrwCQRL/X7mDmMICWRIHz
+  qiCVPAKCEqcnPmEBcRmFgiR2P3xMxOIzSKgLfFrbhf7BEbOWUjKZiEpg7C1JG78ewlly0tsfz
+  uHGcJOlFi3azsjhK0oMaX7ITuEnSZxpG87+wJG9lWM6sWpRWWpRbqmeklFmekZJbmJmTm6hgY
+  WermpxcWJ6ak5iUnFesn5uZsYgQHFAAQ7GCc3OB9ilORgUhLl/bFEI1yILyk/pTIjsTgjvqg0
+  J7X4EKMMB4eSBO+KI0A5waLU9NSKtMwcYGjDpCU4eJREeGeApHmLCxJzizPTIVKnGBWlxHnzQ
+  BICIImM0jy4Nlg8XWKUlRLmZQQ6RIinILUoN7MEVf4VozgHo5IwbxHIFJ7MvBK46a+AFjMBLc
+  5erwqyuCQRISXVwDg5/ZLFGq4YkaU1dUcONtXetX7oKfd2upvPYscXitstOfdeWmx2/FrI5AR
+  mxUvzlOQvXXQ6fW5Kzo/q4Oezd/3q9+5KM209Od2u/ebnFtVQVpYVvw7bbzs89bH/TYcPP+6y
+  VO67dnOT4NTprz4GTGApjZ49d+P9iGXPtS5UuO+3VzGbmvsnyKJEiaU4I9FQi7moOBEAU5XYE
+  aICAAA=
+X-Env-Sender: abuse_dmarc@abuse.aol.com
+X-Msg-Ref: server-2.tower-192.messagelabs.com!1462289898!59056737!1
+X-Originating-IP: [204.29.186.243]
+X-SpamReason: No, hits=0.0 required=7.0 tests=
+X-StarScan-Received:
+X-StarScan-Version: 8.34; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 44910 invoked from network); 3 May 2016 15:38:18 -0000
+Received: from smr-a04e.mx.aol.com (HELO smr-a04e.mx.aol.com) (204.29.186.243)
+  by server-2.tower-192.messagelabs.com with DHE-RSA-AES256-SHA encrypted
+ SMTP; 3 May 2016 15:38:18 -0000
+Received: from tools-m02.mail.aol.com (tools-m02.mail.aol.com [10.74.119.141])
+	by smr-a04e.mx.aol.com (AOL Mail Bouncer) with ESMTP id 8F1833800076	for
+ <hapidmarc@headspace.org.au>; Tue,  3 May 2016 11:38:17 -0400 (EDT)
+Received: from tools-m02.mail.aol.com (localhost.localdomain [127.0.0.1])	by
+ tools-m02.mail.aol.com (Postfix) with ESMTP id 8B89B112	for
+ <hapidmarc@headspace.org.au>; Tue,  3 May 2016 11:38:17 -0400 (EDT)
+From: <abuse_dmarc@abuse.aol.com>
+To: <hapidmarc@headspace.org.au>
+Message-ID: <1807522941.9963.1462289897567.JavaMail.hadoop@tools-m02.mail.aol.com>
+Subject: Report Domain:hapi.headspace.org.au Submitter:aol.com
+ Report-ID:hapi.headspace.org.au_1462233600
+Content-Type: multipart/mixed;
+	boundary="----=_Part_9962_1294321972.1462289897565"
+Date: Tue, 3 May 2016 11:38:17 -0400
+X-MS-Exchange-Organization-AuthSource: HNOEXCH01.hsa.local
+X-MS-Exchange-Organization-AuthAs: Anonymous
+X-MS-Exchange-Organization-AVStamp-Mailbox: KasprLab;29244;0;0
+X-KSE-ServerInfo: HNOEXCH01.hsa.local, 9
+X-KSE-Antivirus-Interceptor-Info: scan successful
+X-KSE-Antivirus-Info: Clean
+X-KSE-Dlp-Interceptor-Info: license violation
+MIME-Version: 1.0
+
+------=_Part_9962_1294321972.1462289897565
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+Attached please find DMARC report aol.com!hapi.headspace.org.au!1462147200!1462233600.xml.gz
+------=_Part_9962_1294321972.1462289897565
+Content-Type: application/gzip;
+	name="aol.com!hapi.headspace.org.au!1462147200!1462233600.xml.gz"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+	filename="aol.com!hapi.headspace.org.au!1462147200!1462233600.xml.gz"
+
+H4sIAAAAAAAAAIVTwZLaMAy98xUMF07YSaC7LSO87Z1OD730ljGOIJ5NbI/tEPbvKyeEwnY7vcSS
+rCe9Jznwcmmb+Rl90NbsFjnLFnM0ylbanHaLXpvK9mGVF5+KxYuAI2J1kOp1PieUCdtL0LtlHaPb
+ct73PevXzPoTL7Is57++73+qGlu50iZEaRQuJ5gJ+Q1WtdKrATVYK8rgGctTbtDbMFTYWyVj4vcf
+0HzwSnk6lR6d9ZFdQrUUMDpli1FWMkoBhCyNbFF8+7EHfvOAeulGOBtiK0NE/1XahinbAh9vpkq6
+ErV0mtUoq+CkwsSFya7MN09FsV4/ZRnwP7lAXbH00pyoxwFP2oiUmG+ei5Q4RgBNJe7xyQd+D+Xv
+hcxm4Gyj1VvpukOjQ42pmSWu5mOCVG+8BVm96lZ44KMBMrjj4KYTnDDWIHAnIEw2GeBUFHkilwz6
+vm8+owkp64mFtz1hbecVltqJIivYhhXrL+zzM5W6xUHZzlBN4KMx6cGzbDqSnvToQBvR6QFcmdxH
+YKB/pO1QfFCSBIz+IIX/XZEP5HSFJuqjprcvIA0KfXn0tv3X5O5TgD+gZRdrenKha2IYCUxboHdf
+2/MbG07PDMaHLQRlHYo21SS6gwNjnavUqzNpeWzEp2Hz6ccUvwEe8NVN0AMAAA==
+
+------=_Part_9962_1294321972.1462289897565--

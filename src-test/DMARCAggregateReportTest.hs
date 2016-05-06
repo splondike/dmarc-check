@@ -13,7 +13,7 @@ import Data.ByteString.Lazy.Char8 (pack)
 
 import qualified Data.DMARCAggregateReport as DM
 
-allTests = testGroup "DMARCAggregateReport Tests" [
+allTests _ = testGroup "DMARCAggregateReport Tests" [
    testCase "Parses valid report" testParsesValid,
    testCase "Bad XML report" testFailsInvalidXml,
    testCase "Bad format report" testFailsInvalidFormat]
