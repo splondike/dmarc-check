@@ -59,8 +59,7 @@ Test-Suite checks
    type: exitcode-stdio-1.0
    main-is: Tests.hs
    other-modules:
-      DMARCAggregateReportTest,
-      CheckEmailTest
+      DMARCAggregateReportTest
    hs-source-dirs: src-test
    build-depends:      
       base >=4.6 && <4.9,
