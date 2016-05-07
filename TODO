@@ -1,0 +1,7 @@
+The RFC[1] has some requirements around attachment and subject naming. These could be used to filter out emails which are not DMARC reports.
+
+Should also provide some indication of emails that were not successfully parsed.
+
+The report output 'sane' column is empty if it's not sane
+
+[1] https://tools.ietf.org/html/rfc7489
