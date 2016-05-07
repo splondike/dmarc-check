@@ -1,19 +1,22 @@
 module EmailExtract(
    extractEmail,
+   maybeUngzipBody,
    Email(..)
 ) where
 
 import Data.Char (toLower)
-import qualified Data.ByteString.Char8 as ByteString (pack, unpack, ByteString)
-import qualified Data.ByteString.Lazy as LazyByteString (fromStrict, ByteString)
-import qualified Data.ByteString.Base64 as Base64 (decode)
-import Data.String.Utils
+import Data.List (find)
+import Data.Maybe (isJust)
+import qualified Data.ByteString.Char8 as ByteString
+import qualified Data.ByteString.Lazy as LazyByteString
+import qualified Data.ByteString.Base64 as Base64
+
 import Text.ParserCombinators.Parsec (parse)
-import qualified Text.ParserCombinators.Parsec.Rfc2822 as EParse
-import Codec.Archive.Zip
+import Data.String.Utils (startswith, split, join, strip, replace)
 import System.Time (CalendarTime)
-import Data.List(find)
-import Data.Maybe(isJust)
+import qualified Text.ParserCombinators.Parsec.Rfc2822 as EParse
+import qualified Codec.Compression.GZip as GZip
+import qualified Codec.Archive.Zip as Zip
 
 data Email = Email {
    subject :: String,
@@ -28,7 +31,7 @@ extractEmail msgStr = do
    subjectStr <- extractHeader getSubject headers
    dateReceivedCal <- extractHeader getReceived headers
 
-   let xmlVal = maybeZippedContent message >>= unzipBody . (replace "\r\n" "")
+   let xmlVal = extractReportXml message
    return Email {
       subject = subjectStr,
       dateReceived = dateReceivedCal,
@@ -41,27 +44,45 @@ extractEmail msgStr = do
       getReceived (EParse.Received (_, cal)) = Just cal
       getReceived _ = Nothing
 
-unzipBody base64ZipStr = maybeXmlStr
-   where
-      maybeXmlStr = do
-         archive <- maybeArchive
-         let files = filesInArchive archive
-         firstFile <- if 1 == (length files) then Just (head files) else Nothing
-         entry <- findEntryByPath firstFile archive
-         return $ fromEntry entry
-      maybeArchive = maybeArchiveByteStr >>= (eitherToMaybe . toArchiveOrFail)
-      maybeArchiveByteStr = decodedByteStr >>= return . LazyByteString.fromStrict
-      decodedByteStr = eitherToMaybe . Base64.decode $ ByteString.pack base64ZipStr
-
-maybeZippedContent (EParse.Message headers body) = content
+extractReportXml (EParse.Message headers body) = content
    where
       content
-         | isZipMimetype contentType = Just body
-         | startswith "multipart/mixed" contentType = extractMultipartZip contentType body
+         | isZipMimetype contentType = maybeUnzipBody maybeBodyStr
+         | isGzipMimetype contentType = maybeUngzipBody maybeBodyStr
+         | isXmlMimetype contentType = maybeBodyStr
+         | startswith "multipart/mixed" contentType = extractMultipartEmail contentType body
          | otherwise = Nothing
+      maybeBodyStr = eitherToMaybe .
+                     (fmap LazyByteString.fromStrict) .
+                     Base64.decode .
+                     ByteString.pack .
+                     (replace "\r\n" "") $ body
       contentType = case extractHeaders "Content-Type" headers of
                          [] -> "unknown"
                          (x:xs) -> x
+
+extractMultipartEmail contentType body = result
+   where
+      result = case filter isJust $ map extractReportXml boundaryChunks of
+                    (x:xs) -> x
+                    [] -> Nothing
+      boundaryChunks = case maybeBoundaryDelimiter of 
+                            Just delimiter -> extractParts delimiter body
+                            Nothing -> []
+      maybeBoundaryDelimiter = lookup "boundary" $ parseMultiPartHeader contentType
+
+maybeUnzipBody maybeByteStr = maybeXmlStr
+   where
+      maybeXmlStr = do
+         archive <- maybeArchive
+         let files = Zip.filesInArchive archive
+         firstFile <- if 1 == (length files) then Just (head files) else Nothing
+         entry <- Zip.findEntryByPath firstFile archive
+         return $ Zip.fromEntry entry
+      maybeArchive = maybeByteStr >>= (eitherToMaybe . Zip.toArchiveOrFail)
+
+-- TODO: This library throws exceptions...
+maybeUngzipBody maybeByteStr = fmap GZip.decompress maybeByteStr
 
 extractHeaders name = foldl addIfMatches []
    where
@@ -69,25 +90,12 @@ extractHeaders name = foldl addIfMatches []
          | name == fieldName = (strip fieldValue):c
       addIfMatches c _ = c
 
-extractMultipartZip :: String -> String -> Maybe String
-extractMultipartZip contentType body = zipBody
-   where
-      zipBody = zipMessageChunk >>= (\(EParse.Message _ b) -> return b)
-      zipMessageChunk = case filter isZipChunk boundaryChunks of
-                      [] -> Nothing
-                      (x:xs) -> Just x
-      isZipChunk (EParse.Message headers _) = let allHeaders = extractHeaders "Content-Type" headers
-                                              in any isZipMimetype allHeaders
-      boundaryChunks = case maybeBoundaryDelimiter of 
-                            Just delimiter -> extractParts delimiter body
-                            Nothing -> []
-      maybeBoundaryDelimiter = lookup "boundary" $ parseMultiPartHeader contentType
-
 isZipMimetype mime = startswith "application/zip" mime ||
                      startswith "application/x-zip-compressed" mime
 
 isGzipMimetype mime = startswith "application/gzip" mime
--- TODO: Support uncompressed xml also
+
+isXmlMimetype mime = startswith "text/xml" mime
 
 extractParts :: String -> String -> [EParse.Message]
 extractParts delimiter body = justSuccessful
