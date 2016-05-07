@@ -1,11 +1,11 @@
 import Test.Framework (defaultMain, defaultMainWithOpts, testGroup)
 
 import qualified DMARCAggregateReportTest as DMARCAggregateReportTest (allTests) 
-import qualified EmailExtractTest as EmailExtractTest (allTests) 
+import qualified ParseEmailTest as ParseEmailTest (allTests) 
 
 tests = [
    DMARCAggregateReportTest.allTests dataDir,
-   EmailExtractTest.allTests dataDir
+   ParseEmailTest.allTests dataDir
    ]
 
 main = defaultMain tests

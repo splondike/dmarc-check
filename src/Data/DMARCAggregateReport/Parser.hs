@@ -5,6 +5,7 @@ module Data.DMARCAggregateReport.Parser (
 
 import qualified Data.ByteString.Lazy as LazyByteString (fromStrict, ByteString)
 
+import Data.String.Utils (strip)
 import Text.XML.Light.Input (parseXMLDoc)
 import Text.XML.Light.Types (QName(..))
 import qualified Text.XML.Light.Proc as P
@@ -43,7 +44,8 @@ processDOM' rootElm = pure T.Report
       dateElm = P.findElement (qn "date_range") rootElm
       metadata = P.findElement (qn "report_metadata") rootElm
 
-      parseTimestamp str = safeRead str >>= (\v -> return $ Time.TOD v 0)
+      -- 2016-05-07 strip is needed because yahoo has an errant space in the end date
+      parseTimestamp str = (safeRead . strip) str >>= (\v -> return $ Time.TOD v 0)
 
 parseRecord recordElm = pure T.Record
                           <*> sourceIp

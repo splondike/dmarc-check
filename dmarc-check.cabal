@@ -61,7 +61,7 @@ Test-Suite checks
    main-is: Tests.hs
    other-modules:
       DMARCAggregateReportTest,
-      EmailExtractTest
+      ParseEmailTest
    hs-source-dirs: src-test
    build-depends:      
       base >=4.6 && <4.9,
